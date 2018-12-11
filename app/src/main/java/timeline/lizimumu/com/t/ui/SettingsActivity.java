@@ -43,45 +43,25 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setTitle(R.string.settings);
         }
 
-        //try {
-
-////          CSVWriter writer = null;
-//           Writer writer = Files.newBufferedWriter(Paths.get(OBJECT_LIST_SAMPLE));
-////            StatefulBeanToCsv<HistoryItem> beanToCsv = new StatefulBeanToCsvBuilder(writer)
-////                    .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
-////                    .build();
-
-            //writer = new CSVWriter(new FileWriter(csv));
-//            writer.write(String.valueOf(items)); // data is adding to csv
-//            writer.close();
-//            beanToCsv.write(items);
-       // } catch (IOException e) {
-          //  e.printStackTrace();
-       // }
-       // catch (CsvRequiredFieldEmptyException e) {
-        //    e.printStackTrace();
-        //} catch (CsvDataTypeMismatchException e) {
-        //    e.printStackTrace();
-       // }
 
         // hide system
-        mSwitchSystem = findViewById(R.id.switch_system_apps);
-        mSwitchSystem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (PreferenceManager.getInstance().getSystemSettings(PreferenceManager.PREF_SETTINGS_HIDE_SYSTEM_APPS) != b) {
-                    PreferenceManager.getInstance().putBoolean(PreferenceManager.PREF_SETTINGS_HIDE_SYSTEM_APPS, b);
-                    setResult(1);
-                }
-            }
-        });
+        //mSwitchSystem = findViewById(R.id.switch_system_apps);
+//        mSwitchSystem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if (PreferenceManager.getInstance().getSystemSettings(PreferenceManager.PREF_SETTINGS_HIDE_SYSTEM_APPS) != b) {
+//                    PreferenceManager.getInstance().putBoolean(PreferenceManager.PREF_SETTINGS_HIDE_SYSTEM_APPS, b);
+//                    setResult(1);
+//                }
+//            }
+//        });
 
-        findViewById(R.id.group_system).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSwitchSystem.performClick();
-            }
-        });
+//        findViewById(R.id.group_system).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mSwitchSystem.performClick();
+//            }
+//        });
 
         // hide uninstall
         mSwitchUninstall = findViewById(R.id.switch_uninstall_appps);
@@ -110,38 +90,32 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        // about
-        findViewById(R.id.group_about).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
-            }
-        });
+
 
         // share
-        findViewById(R.id.group_share).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String shareText = getResources().getString(R.string.share_desc);
-
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"email@example.com"});
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject here");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, OBJECT_LIST_SAMPLE);
-
-                File file = new File(OBJECT_LIST_SAMPLE);
-                Uri uri = Uri.fromFile(file);
-                emailIntent.putExtra(Intent.EXTRA_STREAM, OBJECT_LIST_SAMPLE);
-                startActivity(Intent.createChooser(emailIntent, "Pick an Email provider"));
-            }
-        });
+//        findViewById(R.id.group_share).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String shareText = getResources().getString(R.string.share_desc);
+//
+//                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//                emailIntent.setType("text/plain");
+//                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"email@example.com"});
+//                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject here");
+//                emailIntent.putExtra(Intent.EXTRA_TEXT, OBJECT_LIST_SAMPLE);
+//
+//                File file = new File(OBJECT_LIST_SAMPLE);
+//                Uri uri = Uri.fromFile(file);
+//                emailIntent.putExtra(Intent.EXTRA_STREAM, OBJECT_LIST_SAMPLE);
+//                startActivity(Intent.createChooser(emailIntent, "Pick an Email provider"));
+//            }
+//        });
 
         restoreStatus();
     }
 
     private void restoreStatus() {
-        mSwitchSystem.setChecked(PreferenceManager.getInstance().getSystemSettings(PreferenceManager.PREF_SETTINGS_HIDE_SYSTEM_APPS));
+//        mSwitchSystem.setChecked(PreferenceManager.getInstance().getSystemSettings(PreferenceManager.PREF_SETTINGS_HIDE_SYSTEM_APPS));
         mSwitchUninstall.setChecked(PreferenceManager.getInstance().getUninstallSettings(PreferenceManager.PREF_SETTINGS_HIDE_UNINSTALL_APPS));
     }
 }
